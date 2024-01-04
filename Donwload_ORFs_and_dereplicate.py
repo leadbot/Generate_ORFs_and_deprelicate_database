@@ -2,18 +2,15 @@
 """
 Created on Tue Oct 31 10:07:03 2023
 
-@author: dl923
+@author: dl923 / leadbot
 """
 
 from bs4 import BeautifulSoup
 import urllib
 from Bio import SeqIO
 
-#target_url='https://www.bioinformatics.nl/emboss-explorer/output/992014/' #WOFT
-#outfastafile='Trinity_Clothes_Moths_WOFT_ORFs.faa'
-
-#target_url='https://www.bioinformatics.nl/emboss-explorer/output/449381/' #WO
-outfastafile='Trinity_carpet_beetle_WO_ORFs.faa'
+target_url='' 
+outfastafile=''
 
 #send http request, read the html content
 html = urllib.request.urlopen(target_url).read()
@@ -63,4 +60,4 @@ for record in SeqIO.parse(outfastafile, 'fasta'):
           plt.show()
 
 
-SeqIO.write(records,outfastafile[:-4]+'_Dereplicated.faa', 'fasta')
+SeqIO.write(records,outfastafile.strip('.faa').strip('.fasta')+'_Dereplicated.faa', 'fasta')
